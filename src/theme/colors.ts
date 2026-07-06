@@ -1,0 +1,17 @@
+export const Colors = {
+  background: '#080808',
+  backgroundSecondary: '#141414',
+  card: '#1C1C1E',
+  gold: '#D6B15A',
+  goldPremium: '#C79A2E',
+  goldSoft: '#E6C777',
+  border: 'rgba(214,177,90,0.18)',
+  borderStrong: 'rgba(214,177,90,0.35)',
+  icon: '#FFFFFF',
+  textPrimary: '#FFFFFF',
+  textSecondary: '#A8A8A8',
+  error: '#D94B4B',
+  success: '#38C976',
+  overlay: 'rgba(8,8,8,0.55)',
+  overlayStrong: 'rgba(8,8,8,0.75)',
+};
