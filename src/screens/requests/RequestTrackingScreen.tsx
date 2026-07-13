@@ -161,5 +161,6 @@ const styles = StyleSheet.create({
 
   RequestTrackingScreenSection: {
     marginTop: Layout.cardGap,
+    marginBottom: 80,
   },
 });

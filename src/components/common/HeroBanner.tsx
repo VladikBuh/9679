@@ -27,7 +27,7 @@ export function HeroBanner({
     <View style={[styles.HeroBannerContainer, { height }]}>
       <Image
         source={image}
-        style={StyleSheet.absoluteFill}
+        style={[StyleSheet.absoluteFill, { width: '100%' }]}
         resizeMode="cover"
       />
       <View style={styles.HeroBannerOverlay} />

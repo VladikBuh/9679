@@ -51,7 +51,7 @@ export function FoodDetailScreen() {
         <View style={styles.FoodDetailScreenHero}>
           <Image
             source={getImage(dish.image)}
-            style={StyleSheet.absoluteFill}
+            style={[StyleSheet.absoluteFill, { width: '100%' }]}
             resizeMode="cover"
           />
           <View style={styles.FoodDetailScreenHeroOverlay} />

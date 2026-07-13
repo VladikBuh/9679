@@ -33,7 +33,7 @@ export function FoodCard({
       >
         <Image
           source={getImage(dish.image)}
-          style={StyleSheet.absoluteFill}
+          style={[StyleSheet.absoluteFill, { width: '100%' }]}
           resizeMode="cover"
         />
         {dish.chefRecommended ? (

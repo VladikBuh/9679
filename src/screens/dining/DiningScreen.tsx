@@ -95,7 +95,7 @@ export function DiningScreen() {
           >
             <Image
               source={getImage(category.dishes[0].image)}
-              style={StyleSheet.absoluteFill}
+              style={[StyleSheet.absoluteFill, { width: '100%' }]}
               resizeMode="cover"
             />
             <View style={styles.DiningScreenCategoryOverlay} />

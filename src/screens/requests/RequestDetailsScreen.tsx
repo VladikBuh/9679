@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
 
   RequestDetailsScreenSection: {
     marginTop: Layout.cardGap,
+    marginBottom: 80,
   },
   RequestDetailsScreenStatusRow: {
     marginBottom: Spacing.lg,
