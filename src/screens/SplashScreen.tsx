@@ -97,7 +97,7 @@ export function SplashScreen({ onFinish }: Props) {
             }}
           >
             <Text style={styles.SplashScreenTitle}>
-              Caesars Guest {'\n'}Hub
+              Caesars Hub {'\n'}Guide
             </Text>
             <View style={styles.SplashScreenLoadingRow}>
               <Text style={styles.SplashScreenLoadingLabel}>Loading</Text>

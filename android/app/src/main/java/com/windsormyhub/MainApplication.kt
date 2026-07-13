@@ -1,4 +1,4 @@
-package com.windsormyhub
+package com.caesarshub.guide
 
 import android.app.Application
 import com.facebook.react.PackageList

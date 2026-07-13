@@ -34,7 +34,7 @@ export function HomeScreen() {
       <Animated.View entering={FadeInUp.duration(500).delay(0)}>
         <HeroBanner
           image={images.onboardBg1}
-          title="Welcome to Caesars Guest Hub"
+          title="Welcome to Caesars Hub Guide"
           subtitle="Experience luxury hospitality from your mobile device."
           height={Layout.heroBannerHeight}
         />

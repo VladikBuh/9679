@@ -2,7 +2,7 @@ import { Guest } from '../types';
 
 export const guest: Guest = {
   name: 'Guest',
-  hotel: 'Caesars Guest Hub',
+  hotel: 'Caesars Hub Guide',
   room: '1028',
   roomType: 'Presidential Suite',
   guests: '2 Adults',

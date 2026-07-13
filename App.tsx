@@ -1,5 +1,5 @@
 /**
- * Caesars Guest Hub
+ * Caesars Hub Guide
  *
  * @format
  */

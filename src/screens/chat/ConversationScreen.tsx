@@ -88,7 +88,7 @@ export function ConversationScreen() {
   const handleShare = () => {
     if (!currentFaq) return;
     Share.share({
-      message: `${currentFaq.question}\n\n${currentFaq.answer}\n\n— Caesars Guest Hub`,
+      message: `${currentFaq.question}\n\n${currentFaq.answer}\n\n— Caesars Hub Guide`,
     });
   };
 
