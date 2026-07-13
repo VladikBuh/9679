@@ -1,8 +1,13 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useEffect } from 'react';
-import { Alert, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
-import Animated, { FadeInUp } from 'react-native-reanimated';
+import React, { useEffect, useState } from 'react';
+import { Alert, Share, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  FadeInUp,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AnimatedPressable } from '../../components/common/AnimatedPressable';
 import { EmptyState } from '../../components/common/EmptyState';
@@ -31,6 +36,31 @@ export function ConversationScreen() {
   const { activeQuestionId, messages, askQuestion, clearConversation } =
     useChat();
 
+  const [headerHeight, setHeaderHeight] = useState(insets.top + 56);
+  const headerTranslateY = useSharedValue(0);
+  const headerMaxTranslate = useSharedValue(insets.top + 56);
+  const lastScrollY = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: event => {
+      const y = Math.max(event.contentOffset.y, 0);
+      if (y <= 0) {
+        headerTranslateY.value = 0;
+      } else {
+        const diff = y - lastScrollY.value;
+        headerTranslateY.value = Math.min(
+          Math.max(headerTranslateY.value + diff, 0),
+          headerMaxTranslate.value,
+        );
+      }
+      lastScrollY.value = y;
+    },
+  });
+
+  const headerAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: -headerTranslateY.value }],
+  }));
+
   useEffect(() => {
     if (route.params.questionId !== activeQuestionId) {
       askQuestion(route.params.questionId);
@@ -58,17 +88,23 @@ export function ConversationScreen() {
   const handleShare = () => {
     if (!currentFaq) return;
     Share.share({
-      message: `${currentFaq.question}\n\n${currentFaq.answer}\n\n— Caesars Windsor Casino`,
+      message: `${currentFaq.question}\n\n${currentFaq.answer}\n\n— Caesars Guest Hub`,
     });
   };
 
   return (
     <View style={styles.ConversationScreenRoot}>
-      <View
+      <Animated.View
         style={[
           styles.ConversationScreenHeader,
+          headerAnimatedStyle,
           { paddingTop: insets.top + Spacing.md },
         ]}
+        onLayout={e => {
+          const height = e.nativeEvent.layout.height;
+          setHeaderHeight(height);
+          headerMaxTranslate.value = height;
+        }}
       >
         <AnimatedPressable onPress={() => navigation.goBack()} haptic={false}>
           <Text style={styles.ConversationScreenBackText}>‹ Back</Text>
@@ -79,20 +115,25 @@ export function ConversationScreen() {
         <AnimatedPressable onPress={handleClear} haptic={false}>
           <Text style={styles.ConversationScreenTrashIcon}>🗑️</Text>
         </AnimatedPressable>
-      </View>
+      </Animated.View>
 
       {messages.length === 0 ? (
-        <EmptyState
-          emoji="💬"
-          title="No Conversation Yet"
-          description="Select a frequently asked question to begin chatting with our hotel concierge."
-          actionLabel="Browse Questions"
-          onAction={() => navigation.navigate('ChatHome')}
-        />
+        <View style={[styles.ConversationScreenContent, { paddingTop: headerHeight }]}>
+          <EmptyState
+            emoji="💬"
+            title="No Conversation Yet"
+            description="Select a frequently asked question to begin chatting with our hotel concierge."
+            actionLabel="Browse Questions"
+            onAction={() => navigation.navigate('ChatHome')}
+          />
+        </View>
       ) : (
-        <ScrollView
+        <Animated.ScrollView
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
           contentContainerStyle={[
             styles.ConversationScreenScrollContent,
+            { paddingTop: headerHeight + Spacing.xl },
             { paddingBottom: insets.bottom + Spacing.xl },
           ]}
           showsVerticalScrollIndicator={false}
@@ -170,7 +211,7 @@ export function ConversationScreen() {
               />
             </Animated.View>
           ) : null}
-        </ScrollView>
+        </Animated.ScrollView>
       )}
     </View>
   );
@@ -182,6 +223,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   ConversationScreenHeader: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    elevation: 10,
+    backgroundColor: Colors.background,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -189,6 +237,9 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+  },
+  ConversationScreenContent: {
+    flex: 1,
   },
   ConversationScreenBackText: {
     ...Typography.body,

@@ -1,5 +1,5 @@
 /**
- * Caesars Windsor Casino My Hub
+ * Caesars Guest Hub
  *
  * @format
  */

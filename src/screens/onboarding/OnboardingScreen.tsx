@@ -24,19 +24,19 @@ const STEPS: OnboardingStep[] = [
     title: 'Welcome to Luxury Hospitality',
     subtitle:
       'Discover a premium hotel companion designed to simplify every part of your stay.',
-    image: images.onboardBg1,
+    image: images.onboardBg4,
   },
   {
     title: 'Digital Guest Pass',
     subtitle:
       'Access your digital guest card with a QR code for quick identification during your stay.',
-    image: images.onboardBg2,
+    image: images.onboardBg4,
   },
   {
     title: 'Hotel Services',
     subtitle:
       'Request housekeeping, amenities, transportation, maintenance, and personalized services directly from your phone.',
-    image: images.onboardBg3,
+    image: images.onboardBg4,
   },
   {
     title: 'Room Comfort',
@@ -48,7 +48,7 @@ const STEPS: OnboardingStep[] = [
     title: 'Dining & Assistance',
     subtitle:
       'Order premium meals, browse hotel services, and instantly find answers to common questions.',
-    image: images.onboardBg5,
+    image: images.onboardBg4,
   },
 ];
 

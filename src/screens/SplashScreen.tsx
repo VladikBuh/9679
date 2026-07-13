@@ -71,7 +71,7 @@ export function SplashScreen({ onFinish }: Props) {
 
   return (
     <ImageBackground
-      source={images.loaderBg}
+      source={images.onboardBg4}
       style={styles.SplashScreenBackground}
       resizeMode="cover"
     >
@@ -97,7 +97,7 @@ export function SplashScreen({ onFinish }: Props) {
             }}
           >
             <Text style={styles.SplashScreenTitle}>
-              Caesars Hub {'\n'}Windsor Casino
+              Caesars Guest {'\n'}Hub
             </Text>
             <View style={styles.SplashScreenLoadingRow}>
               <Text style={styles.SplashScreenLoadingLabel}>Loading</Text>
