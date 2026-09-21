@@ -72,7 +72,7 @@ export function OrderConfirmScreen() {
           <View style={styles.OrderConfirmScreenRow}>
             <Text style={styles.OrderConfirmScreenRowLabel}>Order Number</Text>
             <Text style={styles.OrderConfirmScreenRowValue}>
-              {lastOrder?.id ?? 'ORD-240728'}
+              {lastOrder?.id ?? '—'}
             </Text>
           </View>
           <View style={styles.OrderConfirmScreenDivider} />

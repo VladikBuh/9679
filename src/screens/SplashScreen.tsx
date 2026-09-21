@@ -86,19 +86,9 @@ export function SplashScreen({ onFinish }: Props) {
             style={[styles.SplashScreenEmblem, logoStyle]}
             resizeMode="contain"
           />
-          <View
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              bottom: 50,
-
-              alignItems: 'center',
-            }}
-          >
-            <Text style={styles.SplashScreenTitle}>
-              Caesars Hub {'\n'}Windsor Casino
-            </Text>
+          <Text style={styles.SplashScreenTitle}>Caesars Windsor</Text>
+          <Text style={styles.SplashScreenTitle}>Casino Stay</Text>
+          <View style={styles.SplashScreenLoading}>
             <View style={styles.SplashScreenLoadingRow}>
               <Text style={styles.SplashScreenLoadingLabel}>Loading</Text>
               <Dot delay={0} />
@@ -132,16 +122,23 @@ const styles = StyleSheet.create({
   },
 
   SplashScreenEmblem: {
-    width: 250,
-    height: 250,
-    marginBottom: Spacing.xxl,
+    width: 320,
+    height: 320,
+    marginBottom: Spacing.md,
     borderRadius: 50,
   },
   SplashScreenTitle: {
     ...Typography.largeTitle,
     color: Colors.gold,
     textAlign: 'center',
-    marginBottom: Spacing.xxl,
+    marginBottom: Spacing.xs,
+  },
+  SplashScreenLoading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 50,
+    alignItems: 'center',
   },
   SplashScreenLoadingRow: {
     flexDirection: 'row',

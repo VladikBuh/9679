@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Colors, Radius, Spacing, Typography } from '../../theme';
+import { ImageBottomScrim } from './ImageBottomScrim';
 
 interface Props {
   image: ImageSourcePropType;
@@ -30,16 +31,25 @@ export function HeroBanner({
         style={[StyleSheet.absoluteFill, { width: '100%' }]}
         resizeMode="cover"
       />
-      <View style={styles.HeroBannerOverlay} />
-      <View style={styles.HeroBannerContent}>
+      <ImageBottomScrim height="75%" />
+      <View style={styles.HeroBannerContent} pointerEvents="box-none">
         <Text style={styles.HeroBannerTitle}>{title}</Text>
-        <Text style={styles.HeroBannerSubtitle}>{subtitle}</Text>
-      </View>
-      {badge ? (
-        <View style={styles.HeroBannerBadge}>
-          <Text style={styles.HeroBannerBadgeText}>{badge}</Text>
+        <View style={styles.HeroBannerFooter}>
+          <Text
+            style={[
+              styles.HeroBannerSubtitle,
+              badge ? styles.HeroBannerSubtitleWithBadge : null,
+            ]}
+          >
+            {subtitle}
+          </Text>
+          {badge ? (
+            <View style={styles.HeroBannerBadge}>
+              <Text style={styles.HeroBannerBadgeText}>{badge}</Text>
+            </View>
+          ) : null}
         </View>
-      ) : null}
+      </View>
     </View>
   );
 }
@@ -50,35 +60,35 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: Colors.card,
   },
-
-  HeroBannerOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: Colors.background,
-    opacity: 0.45,
-  },
   HeroBannerContent: {
     flex: 1,
     justifyContent: 'flex-end',
     padding: Spacing.xl,
+    zIndex: 2,
   },
   HeroBannerTitle: {
     ...Typography.largeTitle,
     fontSize: 26,
     marginBottom: Spacing.xs,
   },
-
+  HeroBannerFooter: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
   HeroBannerSubtitle: {
     ...Typography.body,
     color: 'rgba(255,255,255,0.85)',
+    flex: 1,
+  },
+  HeroBannerSubtitleWithBadge: {
+    marginRight: Spacing.sm,
   },
   HeroBannerBadge: {
-    position: 'absolute',
-    right: Spacing.lg,
-    bottom: Spacing.lg,
     backgroundColor: Colors.gold,
     borderRadius: Radius.pill,
     paddingHorizontal: Spacing.md,
     paddingVertical: 4,
+    flexShrink: 0,
   },
 
   HeroBannerBadgeText: {

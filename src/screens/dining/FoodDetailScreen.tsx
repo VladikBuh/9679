@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getImage } from '../../assets/images';
 import { AnimatedPressable } from '../../components/common/AnimatedPressable';
 import { Chip } from '../../components/common/Chip';
+import { ImageBottomScrim } from '../../components/common/ImageBottomScrim';
 import { PrimaryButton } from '../../components/common/PrimaryButton';
 import { findDishById } from '../../data/menu';
 
@@ -54,7 +55,7 @@ export function FoodDetailScreen() {
             style={[StyleSheet.absoluteFill, { width: '100%' }]}
             resizeMode="cover"
           />
-          <View style={styles.FoodDetailScreenHeroOverlay} />
+          <ImageBottomScrim height="45%" />
           <AnimatedPressable
             onPress={() => navigation.goBack()}
             haptic={false}
@@ -240,12 +241,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: Radius.card,
     borderBottomRightRadius: Radius.card,
     overflow: 'hidden',
-  },
-
-  FoodDetailScreenHeroOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: Colors.background,
-    opacity: 0.25,
   },
   FoodDetailScreenHeroButton: {
     position: 'absolute',

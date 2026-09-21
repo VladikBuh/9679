@@ -9,7 +9,7 @@ const fontFamily = Platform.select({
 export const Typography = {
   largeTitle: {
     fontFamily,
-    fontSize: 32,
+    fontSize: 34,
     fontWeight: '700' as const,
     color: Colors.textPrimary,
   },

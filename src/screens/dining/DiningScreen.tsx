@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images, { getImage } from '../../assets/images';
 import { AnimatedPressable } from '../../components/common/AnimatedPressable';
 import { HeroBanner } from '../../components/common/HeroBanner';
+import { ImageBottomScrim } from '../../components/common/ImageBottomScrim';
 
 import { menuCategories } from '../../data/menu';
 import { useCart } from '../../hooks/useCart';
@@ -98,7 +99,7 @@ export function DiningScreen() {
               style={[StyleSheet.absoluteFill, { width: '100%' }]}
               resizeMode="cover"
             />
-            <View style={styles.DiningScreenCategoryOverlay} />
+            <ImageBottomScrim height="80%" />
             <View style={styles.DiningScreenCategoryContent}>
               <View style={styles.DiningScreenCategoryTextGroup}>
                 <Text style={styles.DiningScreenCategoryTitle}>
@@ -188,18 +189,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: Colors.card,
   },
-  DiningScreenCategoryOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: Colors.background,
-    opacity: 0.55,
-  },
-
   DiningScreenCategoryContent: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
     padding: Spacing.lg,
+    zIndex: 2,
   },
   DiningScreenCategoryTextGroup: {
     flex: 1,

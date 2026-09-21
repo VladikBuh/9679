@@ -2,8 +2,8 @@ import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { getImage } from '../../assets/images';
 import { AnimatedPressable } from '../../components/common/AnimatedPressable';
+import { ImageBottomScrim } from '../../components/common/ImageBottomScrim';
 import { Colors, Radius, Spacing, Typography } from '../../theme';
-
 import { Dish } from '../../types';
 
 interface Props {
@@ -33,14 +33,17 @@ export function FoodCard({
       >
         <Image
           source={getImage(dish.image)}
-          style={[StyleSheet.absoluteFill, { width: '100%' }]}
+          style={StyleSheet.absoluteFillObject}
           resizeMode="cover"
         />
+        <ImageBottomScrim height="55%" />
+
         {dish.chefRecommended ? (
           <View style={styles.FoodCardBadge}>
             <Text style={styles.FoodCardBadgeText}>Chef Recommended</Text>
           </View>
         ) : null}
+
         <AnimatedPressable
           onPress={onToggleFavorite}
           haptic
@@ -52,7 +55,7 @@ export function FoodCard({
         </AnimatedPressable>
       </View>
 
-      <View style={styles.FoodCardBody}>
+      <View style={[styles.FoodCardBody, grid && styles.FoodCardBodyGrid]}>
         <Text style={styles.FoodCardName} numberOfLines={1}>
           {dish.name}
         </Text>
@@ -81,21 +84,18 @@ const styles = StyleSheet.create({
   FoodCardSurface: {
     backgroundColor: Colors.card,
     borderRadius: Radius.lg,
-    borderWidth: 1,
-    borderColor: Colors.border,
     overflow: 'hidden',
   },
-
   FoodCardSurfaceGrid: {
     width: '100%',
   },
   FoodCardImageWrap: {
-    height: 130,
+    height: 160,
+    backgroundColor: Colors.backgroundSecondary,
   },
   FoodCardImageWrapGrid: {
-    height: 100,
+    height: 110,
   },
-
   FoodCardBadge: {
     position: 'absolute',
     left: Spacing.sm,
@@ -125,13 +125,17 @@ const styles = StyleSheet.create({
   FoodCardHeartIcon: {
     fontSize: 15,
   },
-
   FoodCardBody: {
     padding: Spacing.lg,
+    backgroundColor: Colors.card,
+  },
+  FoodCardBodyGrid: {
+    padding: Spacing.md,
   },
   FoodCardName: {
     ...Typography.cardTitle,
     fontSize: 17,
+    color: Colors.textPrimary,
     marginBottom: 4,
   },
   FoodCardDescription: {
@@ -139,7 +143,6 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     marginBottom: Spacing.sm,
   },
-
   FoodCardMetaRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -159,7 +162,6 @@ const styles = StyleSheet.create({
     ...Typography.caption,
     color: Colors.textSecondary,
   },
-
   FoodCardAddButton: {
     backgroundColor: Colors.gold,
     borderRadius: Radius.sm,

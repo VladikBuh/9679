@@ -1,8 +1,23 @@
 import { Guest } from '../types';
 
+function formatStayDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+}
+
+function formatYymmdd(date: Date): string {
+  const yy = String(date.getFullYear()).slice(-2);
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  return `${yy}${mm}${dd}`;
+}
+
+const today = new Date();
+const checkout = new Date(today);
+checkout.setDate(today.getDate() + 3);
+
 export const guest: Guest = {
   name: 'Guest',
-  hotel: 'Caesars Hub Windsor Casino',
+  hotel: 'Caesars Windsor Casino Stay',
   room: '1028',
   roomType: 'Presidential Suite',
   guests: '2 Adults',
@@ -12,7 +27,7 @@ export const guest: Guest = {
   breakfast: 'Included',
   parking: 'Included',
   lateCheckout: 'Available',
-  checkIn: 'July 2',
-  checkOut: 'July 5',
-  cardNumber: 'CW-240728',
+  checkIn: formatStayDate(today),
+  checkOut: formatStayDate(checkout),
+  cardNumber: `CW-${formatYymmdd(today)}`,
 };

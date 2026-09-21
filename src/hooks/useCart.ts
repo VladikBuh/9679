@@ -55,12 +55,18 @@ export function useCart() {
       const dish = findDishById(item.dishId);
       return sum + (dish ? dish.price * item.quantity : 0);
     }, 0);
+    const now = new Date();
+    const yymmdd = [
+      String(now.getFullYear()).slice(-2),
+      String(now.getMonth() + 1).padStart(2, '0'),
+      String(now.getDate()).padStart(2, '0'),
+    ].join('');
     const order: Order = {
-      id: 'ORD-240728',
+      id: `ORD-${yymmdd}`,
       items: state.items,
       total,
       status: 'Preparing',
-      createdAt: new Date().toISOString(),
+      createdAt: now.toISOString(),
       estimatedDelivery: '35 Minutes',
       deliveryNotes,
     };

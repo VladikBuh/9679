@@ -11,8 +11,21 @@ export function EmojiIcon({ emoji, active, size = 22 }: Props) {
   if (!active) {
     return <Text style={[styles.EmojiIconInactive, { fontSize: size }]}>{emoji}</Text>;
   }
+
+  const badgeWidth = size + 28;
+  const badgeHeight = size + 12;
+
   return (
-    <View style={[styles.EmojiIconActiveBadge, { width: size + 20, height: size + 20, borderRadius: (size + 20) / 2 }]}>
+    <View
+      style={[
+        styles.EmojiIconActiveBadge,
+        {
+          width: badgeWidth,
+          height: badgeHeight,
+          borderRadius: badgeHeight / 2,
+        },
+      ]}
+    >
       <Text style={{ fontSize: size }}>{emoji}</Text>
     </View>
   );

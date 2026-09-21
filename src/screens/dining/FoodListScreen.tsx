@@ -138,6 +138,6 @@ const styles = StyleSheet.create({
     color: Colors.textPrimary,
   },
   FoodListScreenCardWrap: {
-    marginBottom: Layout.cardGap,
+    marginBottom: Spacing.md,
   },
 });
