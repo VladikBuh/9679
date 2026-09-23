@@ -10,8 +10,8 @@ workflows:
       vars:
         XCODE_WORKSPACE: 'WindsorMyHub.xcworkspace' # <----
         XCODE_SCHEME: 'WindsorMyHub' # <----
-        BUNDLE_ID: 'com.fkfkwworomf.fkfkglksdfn' # <----
-        APP_STORE_APP_ID: 6814431019 # <----
+        BUNDLE_ID: 'com.wqpokcnkkdlsdds.lskasm' # <----
+        APP_STORE_APP_ID: 6815369004 # <----
         APP_STORE_CONNECT_KEY_ID: '8FXL6TQW4C' # <----
         APP_STORE_CONNECT_ISSUER_ID: '1f201783-7e2d-4fbd-b4fe-739934c7926a' # <----
         node: latest
